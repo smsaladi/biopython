@@ -34,7 +34,7 @@ install:
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "cp Tests/biosql.ini.sample Tests/biosql.ini"
   - "%PYTHON%\\python.exe -m pip install --upgrade pip setuptools"
-  - "%PYTHON\\python.exe -m pip install tox"
+  - "%PYTHON%\\python.exe -m pip install tox"
   - "tox -c .travis-tox.ini -e $TOXENV --notest"
 build: off
 
