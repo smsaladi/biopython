@@ -38,7 +38,7 @@ install:
   - "cp Tests/biosql.ini.sample Tests/biosql.ini"
   - "%PYTHON%\\python.exe -m pip install --upgrade pip setuptools"
   - "%PYTHON%\\python.exe -m pip install tox"
-  - "tox -c .travis-tox.ini -e %TOXENV% --notest"
+  - "%PYTHON%\\python.exe -m tox -c .travis-tox.ini -e %TOXENV% --notest"
 build: off
 
 test_script:
@@ -50,7 +50,7 @@ test_script:
   # the interpreter you're using - Appveyor does not do anything special
   # to put the Python evrsion you want to use on PATH.
   # - "%PYTHON%\\python.exe setup.py test"
-  - "tox -c .travis-tox.ini -e %TOXENV%"
+    - "%PYTHON%\\python.exe -m tox -c .travis-tox.ini -e %TOXENV%"
 
 after_test:
   # This step builds your wheels.
