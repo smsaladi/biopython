@@ -1,3 +1,6 @@
+Rnit:
+    shallow_clone: true
+
 environment:
 
   matrix:
@@ -8,20 +11,31 @@ environment:
     # isn't covered by this document) at the time of writing.
 
     - PYTHON: "C:\\Python27"
+      env: TOXENV=py27-cover
     - PYTHON: "C:\\Python33"
+      env: TOXENV=py33-cover
     - PYTHON: "C:\\Python34"
+      env: TOXENV=py34-cover
     - PYTHON: "C:\\Python35"
+      env: TOXENV=py35-cover
     - PYTHON: "C:\\Python27-x64"
+      env: TOXENV=py27-cover
     - PYTHON: "C:\\Python33-x64"
+      env: TOXENV=py33-cover
       DISTUTILS_USE_SDK: "1"
     - PYTHON: "C:\\Python34-x64"
+      env: TOXENV=py34-cover
       DISTUTILS_USE_SDK: "1"
     - PYTHON: "C:\\Python35-x64"
+      env: TOXENV=py35-cover
 
 install:
   # We need wheel installed to build wheels
   - "%PYTHON%\\python.exe -m pip install wheel"
-
+  - "cp Tests/biosql.ini.sample Tests/biosql.ini"
+  - "pip install --upgrade pip setuptools"
+  - "pip install tox"
+  - "tox -c .travis-tox.ini -e $TOXENV --notest"
 build: off
 
 test_script:
@@ -32,7 +46,8 @@ test_script:
   # Note that you must use the environment variable %PYTHON% to refer to
   # the interpreter you're using - Appveyor does not do anything special
   # to put the Python evrsion you want to use on PATH.
-  - "%PYTHON%\\python.exe setup.py test"
+  # - "%PYTHON%\\python.exe setup.py test"
+  - "tox -c .travis-tox.ini -e $TOXENV"
 
 after_test:
   # This step builds your wheels.
