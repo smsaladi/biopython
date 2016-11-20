@@ -1,4 +1,4 @@
-Rnit:
+init:
     shallow_clone: true
 
 environment:
