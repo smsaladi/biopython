@@ -33,8 +33,8 @@ install:
   # We need wheel installed to build wheels
   - "%PYTHON%\\python.exe -m pip install wheel"
   - "cp Tests/biosql.ini.sample Tests/biosql.ini"
-  - "pip install --upgrade pip setuptools"
-  - "pip install tox"
+  - "%PYTHON%\\python.exe -m pip install --upgrade pip setuptools"
+  - "%PYTHON\\python.exe -m pip install tox"
   - "tox -c .travis-tox.ini -e $TOXENV --notest"
 build: off
 
