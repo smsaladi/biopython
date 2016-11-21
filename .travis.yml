@@ -12,12 +12,12 @@
 
 language: python
 
-os:
+matrix:
+ os:
     - linux
     - osx
 
-matrix:
-  include:
+ include:
     - env: TOXENV=pep8
     - env: TOXENV=sdist
     - env: TOXENV=bdist_wheel
