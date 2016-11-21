@@ -11,6 +11,11 @@
 #
 
 language: python
+
+os:
+    - linux
+    - osx
+
 matrix:
   include:
     - env: TOXENV=pep8
@@ -54,6 +59,8 @@ before_install:
   - unzip PhyML-3.1.zip
   - mv PhyML-3.1/PhyML-3.1_linux64 bin/phyml
   - cd $TRAVIS_BUILD_DIR
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+    #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install bwa clustal-omega clustal-w emboss mafft muscle paml phyml samtools genewise; fi
 
 install:
   - "cp Tests/biosql.ini.sample Tests/biosql.ini"
